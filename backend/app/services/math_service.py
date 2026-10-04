@@ -10,11 +10,11 @@ class MathService:
 
         # Heuristic ClearSpeak speech translation
         spoken = clean
-        spoken = re.sub(r'\frac\{([^}]+)\}\{([^}]+)\}', r'fraction  over , end fraction', spoken)
+        spoken = re.sub(r'\\frac\{([^}]+)\}\{([^}]+)\}', r'fraction \1 over \2, end fraction', spoken)
         spoken = re.sub(r'\^2', ' squared', spoken)
         spoken = re.sub(r'\^3', ' cubed', spoken)
-        spoken = re.sub(r'\^\{([^}]+)\}', r' to the power of ', spoken)
-        spoken = re.sub(r'\sqrt\{([^}]+)\}', r'square root of , end root', spoken)
+        spoken = re.sub(r'\^\{([^}]+)\}', r' to the power of \1', spoken)
+        spoken = re.sub(r'\\sqrt\{([^}]+)\}', r'square root of \1, end root', spoken)
         spoken = spoken.replace("+", " plus ").replace("-", " minus ").replace("=", " equals ")
 
         # Clean spaces
