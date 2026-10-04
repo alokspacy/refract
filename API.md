@@ -1,4 +1,4 @@
-# AccessLearn AI — Extended API Specification
+# AccessLearn AI — Enterprise API Specification
 
 ## 1. Compliance Audit API
 - `POST /api/compliance/evaluate`: Audits raw ContentDocument for WCAG 2.2 AA/AAA rules.
@@ -19,9 +19,19 @@
 - `POST /api/export/package`: Packages adapted content into a downloadable bundle.
 - `GET /api/export/{id}/download`: Streams zip archive package.
 
-## 5. Smart Flashcards & Glossary API
-- `GET /api/glossary/documents/{id}/flashcards`: Generates cognitive review deck with memory cues.
+## 5. STEM Math & ClearSpeak API
+- `POST /api/math/translate`: Translates LaTeX equations into accessible MathML and ClearSpeak spoken representations.
 
-## 6. Educator Review & Annotation API
-- `POST /api/annotations/variants/{id}/review`: Records educator block approval or suggested edit.
-- `GET /api/annotations/variants/{id}/summary`: Returns approval rate and publish readiness.
+## 6. Braille Translation API (UEB)
+- `GET /api/braille/documents/{id}`: Produces Unified English Braille Grade 1 and Grade 2 translations.
+- `GET /api/braille/documents/{id}/brf`: Downloads standard Braille Ready Format (.brf) embosser file.
+
+## 7. Tactile Graphics API
+- `GET /api/tactile/assets/{asset_id}`: Produces structured tactile diagram exploration scripts and raised layer maps.
+
+## 8. Comprehension Self-Check API
+- `GET /api/quiz/documents/{id}`: Generates low-cognitive-load comprehension checkpoints.
+
+## 9. Multi-Tenant Enterprise Quota API
+- `POST /api/organizations/`: Registers school district workspaces.
+- `GET /api/organizations/{id}`: Retrieves monthly page usage and quota limits.
