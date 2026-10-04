@@ -1,4 +1,5 @@
 """HTML5 standalone bundle generation service."""
+from pathlib import Path
 from app.schemas.content import ContentDocument, BlockType
 from app.storage.export_packager import ExportPackager
 
@@ -28,11 +29,6 @@ class HtmlExportService:
             body_parts.append("</section>")
 
         html_content = "".join(body_parts)
-
-        # Basic template injection
-        from app.templates.accessible_viewer import HTML_TEMPLATE if False else None
-        # Using built-in template replacement
-        from pathlib import Path
         tmpl_path = Path(__file__).parent.parent / "templates" / "accessible_viewer.html"
         if tmpl_path.exists():
             tmpl = tmpl_path.read_text(encoding="utf-8")
