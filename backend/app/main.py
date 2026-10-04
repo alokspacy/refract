@@ -5,7 +5,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.api import auth, documents, health, jobs, variants, profiles, compliance, readability
+from app.api.router import api_router
 from app.core.config import settings
 from app.db.database import Base, engine
 
@@ -62,14 +62,7 @@ async def http_exception_handler(request: Request, exc: HTTPException):
         content={"error": {"code": code, "message": message}},
     )
 
-app.include_router(health.router)
-app.include_router(auth.router)
-app.include_router(documents.router)
-app.include_router(variants.router)
-app.include_router(profiles.router)
-app.include_router(jobs.router)
-app.include_router(compliance.router)
-app.include_router(readability.router)
+app.include_router(api_router)
 
 @app.get("/", include_in_schema=False)
 def root_redirect():
