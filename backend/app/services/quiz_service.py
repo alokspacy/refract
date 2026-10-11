@@ -14,7 +14,8 @@ class QuizService:
         for sec in doc.sections:
             for b in sec.blocks:
                 txt = b.source_text or ""
-                if b.type == BlockType.PARAGRAPH and len(txt.split()) > 8:
+                # Threshold adjusted to >= 6 words so standard statements trigger questions
+                if b.type == BlockType.PARAGRAPH and len(txt.split()) >= 6:
                     words = txt.split()
                     key_concept = words[0] if words else "This topic"
 
