@@ -1,5 +1,6 @@
 """Math accessibility conversion service."""
 import re
+import html
 from app.schemas.math_accessibility import MathAccessibleExpression
 
 class MathService:
@@ -8,21 +9,20 @@ class MathService:
     def to_accessible_math(self, latex: str) -> MathAccessibleExpression:
         clean = latex.strip().replace("$", "")
 
-        # Heuristic ClearSpeak speech translation
         spoken = clean
-        spoken = re.sub(r'\\frac\{([^}]+)\}\{([^}]+)\}', r'fraction \1 over \2, end fraction', spoken)
+        spoken = re.sub(r'\frac\{([^}]+)\}\{([^}]+)\}', r'fraction  over , end fraction', spoken)
         spoken = re.sub(r'\^2', ' squared', spoken)
         spoken = re.sub(r'\^3', ' cubed', spoken)
-        spoken = re.sub(r'\^\{([^}]+)\}', r' to the power of \1', spoken)
-        spoken = re.sub(r'\\sqrt\{([^}]+)\}', r'square root of \1, end root', spoken)
+        spoken = re.sub(r'\^\{([^}]+)\}', r' to the power of ', spoken)
+        spoken = re.sub(r'\sqrt\{([^}]+)\}', r'square root of , end root', spoken)
         spoken = spoken.replace("+", " plus ").replace("-", " minus ").replace("=", " equals ")
-
-        # Clean spaces
         spoken = re.sub(r'\s+', ' ', spoken).strip()
 
+        # Safely escape XML/MathML entities in text nodes
+        escaped_clean = html.escape(clean)
         mathml = (
             f'<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">'
-            f'<mrow><mtext>{clean}</mtext></mrow>'
+            f'<mrow><mtext>{escaped_clean}</mtext></mrow>'
             f'</math>'
         )
 
