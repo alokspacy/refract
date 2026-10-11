@@ -4,7 +4,6 @@ from typing import Dict, List
 from app.schemas.braille import BrailleGrade, BrailleBlockTranslation, BrailleDocumentResponse
 from app.schemas.content import ContentDocument
 
-# Standard Unicode Braille Patterns (U+2800 to U+283F)
 BRAILLE_MAP: Dict[str, str] = {
     'a': '⠁', 'b': '⠃', 'c': '⠉', 'd': '⠙', 'e': '⠑',
     'f': '⠋', 'g': '⠛', 'h': '⠓', 'i': '⠊', 'j': '⠚',
@@ -27,7 +26,10 @@ class BrailleService:
         clean = text.lower()
         if grade == BrailleGrade.GRADE_2:
             for word, symbol in UEB_CONTRACTIONS.items():
-                clean = re.sub(rf'\b{word}\b', symbol, clean)
+                clean = re.sub(rf'\b{re.escape(word)}\b', symbol, clean)
+
+        # Normalize whitespace
+        clean = re.sub(r'\s+', ' ', clean)
 
         result = []
         for char in clean:
