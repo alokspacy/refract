@@ -19,7 +19,6 @@ class WCAGComplianceEvaluator:
         for sec in doc.sections:
             all_blocks.extend(sec.blocks)
 
-        # 1. Non-text Content (1.1.1) - Image Alt Text
         rules_evaluated += 1
         img_violations = self._check_images(all_blocks)
         if not img_violations:
@@ -27,7 +26,6 @@ class WCAGComplianceEvaluator:
         else:
             violations.extend(img_violations)
 
-        # 2. Headings and Labels (2.4.6) - Structural Hierarchy
         rules_evaluated += 1
         heading_violations = self._check_headings(all_blocks)
         if not heading_violations:
@@ -35,7 +33,6 @@ class WCAGComplianceEvaluator:
         else:
             violations.extend(heading_violations)
 
-        # 3. Info and Relationships (1.3.1) - Tables & Lists
         rules_evaluated += 1
         struct_violations = self._check_structures(all_blocks)
         if not struct_violations:
@@ -43,7 +40,6 @@ class WCAGComplianceEvaluator:
         else:
             violations.extend(struct_violations)
 
-        # 4. Reading Level (3.1.5) - Cognitive sentence complexity
         rules_evaluated += 1
         reading_violations = self._check_reading_complexity(all_blocks)
         if not reading_violations:
@@ -112,8 +108,10 @@ class WCAGComplianceEvaluator:
         for b in blocks:
             if b.type == BlockType.TABLE:
                 meta = b.metadata or {}
-                headers = meta.get("headers") or []
-                if not headers:
+                headers = meta.get("headers")
+                rows = meta.get("rows")
+                # Handle empty headers list or missing table headers
+                if not headers or len(headers) == 0:
                     v.append(ComplianceViolation(
                         rule_id="1.3.1",
                         criterion="Info and Relationships",
