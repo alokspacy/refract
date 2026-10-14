@@ -3,7 +3,8 @@ from fastapi import APIRouter
 from app.api import (
     auth, documents, health, jobs, variants, profiles,
     compliance, readability, audio, export, glossary, annotations,
-    braille, organizations, tactile, math, quiz
+    braille, organizations, tactile, math, quiz,
+    sign_language, translation, bundle
 )
 
 api_router = APIRouter()
@@ -24,3 +25,6 @@ api_router.include_router(organizations.router)
 api_router.include_router(tactile.router)
 api_router.include_router(math.router)
 api_router.include_router(quiz.router)
+api_router.include_router(sign_language.router)
+api_router.include_router(translation.router)
+api_router.include_router(bundle.router)
