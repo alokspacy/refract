@@ -14,6 +14,11 @@ BRAILLE_MAP: Dict[str, str] = {
     '.': '⠲', '!': '⠖', '?': '⠦', '-': '⠤', "'": '⠄'
 }
 
+DIGIT_MAP: Dict[str, str] = {
+    '1': '⠁', '2': '⠃', '3': '⠉', '4': '⠙', '5': '⠑',
+    '6': '⠋', '7': '⠛', '8': '⠓', '9': '⠊', '0': '⠚'
+}
+
 UEB_CONTRACTIONS: Dict[str, str] = {
     'the': '⠮', 'and': '⠯', 'for': '⠿', 'of': '⠷',
     'with': '⠾', 'in': '⠔', 'to': '⠖', 'that': '⠹',
@@ -28,7 +33,12 @@ class BrailleService:
             for word, symbol in UEB_CONTRACTIONS.items():
                 clean = re.sub(rf'\b{re.escape(word)}\b', symbol, clean)
 
-        # Normalize whitespace
+        # Standard UEB Number Indicator ⠼ (dots 3-4-5-6)
+        def replace_numbers(match):
+            digits = match.group(0)
+            return '⠼' + ''.join(DIGIT_MAP.get(d, d) for d in digits)
+
+        clean = re.sub(r'\d+', replace_numbers, clean)
         clean = re.sub(r'\s+', ' ', clean)
 
         result = []
