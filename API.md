@@ -1,4 +1,4 @@
-# AccessLearn AI — Enterprise API Specification
+# AccessLearn AI — Extended API Reference
 
 ## 1. Compliance Audit API
 - `POST /api/compliance/evaluate`: Audits raw ContentDocument for WCAG 2.2 AA/AAA rules.
@@ -18,6 +18,7 @@
 - `GET /api/export/formats`: Lists available distribution targets (HTML5, SCORM, EPUB3).
 - `POST /api/export/package`: Packages adapted content into a downloadable bundle.
 - `GET /api/export/{id}/download`: Streams zip archive package.
+- `GET /api/bundle/documents/{id}/all`: Downloads master zip archive with all formats.
 
 ## 5. STEM Math & ClearSpeak API
 - `POST /api/math/translate`: Translates LaTeX equations into accessible MathML and ClearSpeak spoken representations.
@@ -26,11 +27,12 @@
 - `GET /api/braille/documents/{id}`: Produces Unified English Braille Grade 1 and Grade 2 translations.
 - `GET /api/braille/documents/{id}/brf`: Downloads standard Braille Ready Format (.brf) embosser file.
 
-## 7. Tactile Graphics API
-- `GET /api/tactile/assets/{asset_id}`: Produces structured tactile diagram exploration scripts and raised layer maps.
+## 7. American Sign Language (ASL) Glossing API
+- `POST /api/sign-language/gloss-sentence`: Converts English into ASL Topic-Comment grammatical gloss.
+- `GET /api/sign-language/documents/{id}`: Generates full ASL gloss translation for a document.
 
-## 8. Comprehension Self-Check API
-- `GET /api/quiz/documents/{id}`: Generates low-cognitive-load comprehension checkpoints.
+## 8. Multilingual Accessibility Translation API
+- `GET /api/translation/documents/{id}`: Translates content into ES, FR, AR, ZH, HI, DE while preserving block structure.
 
 ## 9. Multi-Tenant Enterprise Quota API
 - `POST /api/organizations/`: Registers school district workspaces.
