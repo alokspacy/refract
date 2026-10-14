@@ -13,11 +13,22 @@ export function FocusRuler({ enabled, color = "#14b8a6", height = 4 }: FocusRule
 
   useEffect(() => {
     if (!enabled) return;
-    const handleMove = (e: MouseEvent) => {
-      setMouseY(e.clientY);
+
+    const handlePointerMove = (e: MouseEvent | TouchEvent) => {
+      if ("touches" in e && e.touches.length > 0) {
+        setMouseY(e.touches[0].clientY);
+      } else if ("clientY" in e) {
+        setMouseY(e.clientY);
+      }
     };
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
+
+    window.addEventListener("mousemove", handlePointerMove as any);
+    window.addEventListener("touchmove", handlePointerMove as any);
+
+    return () => {
+      window.removeEventListener("mousemove", handlePointerMove as any);
+      window.removeEventListener("touchmove", handlePointerMove as any);
+    };
   }, [enabled]);
 
   if (!enabled) return null;
