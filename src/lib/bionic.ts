@@ -1,13 +1,26 @@
 /**
  * Bionic Reading algorithm: highlights fixation points to guide saccadic eye movements.
+ * Preserves trailing punctuation and special characters.
  */
 export function formatBionicWord(word: string): { bold: string; rest: string } {
-  const clean = word.trim();
-  if (clean.length === 0) return { bold: "", rest: "" };
-  if (clean.length <= 3) return { bold: clean.slice(0, 1), rest: clean.slice(1) };
-  if (clean.length <= 6) return { bold: clean.slice(0, 2), rest: clean.slice(2) };
-  if (clean.length <= 9) return { bold: clean.slice(0, 3), rest: clean.slice(3) };
-  return { bold: clean.slice(0, Math.ceil(clean.length * 0.4)), rest: clean.slice(Math.ceil(clean.length * 0.4)) };
+  const match = word.match(/^([a-zA-Z0-9]+)([^a-zA-Z0-9]*)$/);
+  if (!match) {
+    return { bold: "", rest: word };
+  }
+
+  const core = match[1];
+  const punct = match[2] || "";
+
+  let boldLen = 1;
+  if (core.length <= 3) boldLen = 1;
+  else if (core.length <= 6) boldLen = 2;
+  else if (core.length <= 9) boldLen = 3;
+  else boldLen = Math.ceil(core.length * 0.4);
+
+  return {
+    bold: core.slice(0, boldLen),
+    rest: core.slice(boldLen) + punct,
+  };
 }
 
 export function toBionicHtml(text: string): string {
