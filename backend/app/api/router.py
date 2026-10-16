@@ -4,7 +4,8 @@ from app.api import (
     auth, documents, health, jobs, variants, profiles,
     compliance, readability, audio, export, glossary, annotations,
     braille, organizations, tactile, math, quiz,
-    sign_language, translation, bundle
+    sign_language, translation, bundle,
+    breakdown, plain_language, webhooks
 )
 
 api_router = APIRouter()
@@ -28,3 +29,6 @@ api_router.include_router(quiz.router)
 api_router.include_router(sign_language.router)
 api_router.include_router(translation.router)
 api_router.include_router(bundle.router)
+api_router.include_router(breakdown.router)
+api_router.include_router(plain_language.router)
+api_router.include_router(webhooks.router)
