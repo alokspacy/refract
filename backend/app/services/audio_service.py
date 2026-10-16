@@ -24,10 +24,10 @@ class AudioNarrationService:
                 continue
 
             words = text.split()
-            # Average English word is ~280ms at 1.0x rate
-            duration_ms = int((len(words) * 280) / rate)
-            start_ms = current_time_ms
-            end_ms = start_ms + duration_ms
+            # Duration calculation ensuring rounded integer milliseconds
+            duration_ms = max(int(round((len(words) * 280) / rate)), 500)
+            start_ms = int(current_time_ms)
+            end_ms = int(start_ms + duration_ms)
 
             cues.append(SubtitleCue(
                 id=cue_id,
@@ -67,10 +67,11 @@ class AudioNarrationService:
 
     @staticmethod
     def _format_vtt_timestamp(ms: int) -> str:
-        hours = ms // 3600000
-        ms %= 3600000
-        minutes = ms // 60000
-        ms %= 60000
-        seconds = ms // 1000
-        millis = ms % 1000
+        total_ms = int(round(ms))
+        hours = total_ms // 3600000
+        total_ms %= 3600000
+        minutes = total_ms // 60000
+        total_ms %= 60000
+        seconds = total_ms // 1000
+        millis = total_ms % 1000
         return f"{hours:02d}:{minutes:02d}:{seconds:02d}.{millis:03d}"
