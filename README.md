@@ -10,9 +10,11 @@
 |---|---|---|
 | **Document Extraction & Normalization** | PyMuPDF, DOCX, PPTX, OCR fallback, Content JSON v1.0 | **COMPLETED** |
 | **AI Transformation Engine** | Dyslexia, Cognitive, and Visual profiles with Grounding Validation | **COMPLETED** |
+| **Executive Function Breakdown** | Automated assignment pacing and interactive task checklists | **COMPLETED** |
+| **Plain Language Rewriting** | Scholarly jargon simplification dictionary and readability booster | **COMPLETED** |
 | **Multi-Modal Audio Narration** | WebVTT subtitle synchronization, speaking rate presets, and karaoke player | **COMPLETED** |
 | **STEM & ClearSpeak Math** | LaTeX to MathML and screen-reader spoken math | **COMPLETED** |
 | **Braille Translation Engine** | Unified English Braille (UEB) Grade 1 & 2 translation with .brf export | **COMPLETED** |
 | **Tactile Diagram Exploration** | Structured layer mapping and tactile exploration scripts | **COMPLETED** |
 | **LMS & Standalone Distribution** | SCORM 1.2 / 2004 zip packages and zero-dependency offline HTML5 reader | **COMPLETED** |
-| **Educator Review & Quota Metering** | Block annotations, approval workflows, and multi-tenant district quotas | **COMPLETED** |
+| **Institutional Webhooks & Quotas** | Event dispatchers and multi-tenant school district licensing | **COMPLETED** |
