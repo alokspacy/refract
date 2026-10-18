@@ -1,4 +1,4 @@
-# AccessLearn AI — Extended API Specification
+# AccessLearn AI — Extended API Reference
 
 ## 1. Compliance Audit API
 - `POST /api/compliance/evaluate`: Audits raw ContentDocument for WCAG 2.2 AA/AAA rules.
@@ -15,8 +15,8 @@
 ## 4. Plain Language Rewriter API
 - `POST /api/plain-language/simplify`: Replaces scholarly jargon with plain terminology.
 
-## 5. Webhooks & LMS Events API
-- `POST /api/webhooks/test-event`: Dispatches test integration events to registered endpoints.
+## 5. DAISY Digital Talking Books API
+- `GET /api/daisy/documents/{id}/ncc`: Produces DAISY 2.02 / 3.0 NCC navigation manifests for audio talking book hardware.
 
 ## 6. Multi-Modal Export & Master Bundle API
 - `GET /api/export/formats`: Lists available distribution targets (HTML5, SCORM, EPUB3).

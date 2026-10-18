@@ -12,6 +12,7 @@
 | **AI Transformation Engine** | Dyslexia, Cognitive, and Visual profiles with Grounding Validation | **COMPLETED** |
 | **Executive Function Breakdown** | Automated assignment pacing and interactive task checklists | **COMPLETED** |
 | **Plain Language Rewriting** | Scholarly jargon simplification dictionary and readability booster | **COMPLETED** |
+| **DAISY Audio Talking Books** | Navigation Control Center (NCC) generation for accessible hardware players | **COMPLETED** |
 | **Multi-Modal Audio Narration** | WebVTT subtitle synchronization, speaking rate presets, and karaoke player | **COMPLETED** |
 | **STEM & ClearSpeak Math** | LaTeX to MathML and screen-reader spoken math | **COMPLETED** |
 | **Braille Translation Engine** | Unified English Braille (UEB) Grade 1 & 2 translation with .brf export | **COMPLETED** |
