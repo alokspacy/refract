@@ -1,0 +1,22 @@
+/* Distraction-free reader mode styling */
+.reader-container {
+  max-width: 68ch;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3rem 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  letter-spacing: 0.015em;
+}
+
+.reader-container p {
+  margin-bottom: 1.75rem;
+}
+
+.reader-container h1,
+.reader-container h2,
+.reader-container h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
