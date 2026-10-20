@@ -11,21 +11,20 @@ class GlossaryService:
     def generate_deck(self, doc: ContentDocument) -> FlashcardDeck:
         cards: List[FlashcardCard] = []
 
-        # Use existing glossary if present
         if doc.glossary:
             for term, definition in doc.glossary.items():
-                cards.append(self._create_card(term, definition))
+                if term and len(term.strip()) > 1:
+                    cards.append(self._create_card(term, definition))
 
-        # Extract highlighted concepts from objectives or text
-        if not cards:
+        if not cards and doc.learning_objectives:
             for obj in doc.learning_objectives:
-                words = re.findall(r'\b[A-Z][a-z]{4,}\b', obj)
+                words = re.findall(r'\b[A-Z][a-z]{3,}\b', obj)
                 for w in words[:3]:
                     cards.append(self._create_card(w, f"Key scientific concept introduced in {doc.title}."))
 
         if not cards:
-            # Fallback cards for the subject
-            cards.append(self._create_card(doc.subject or "Concept", f"Foundational knowledge for {doc.title}."))
+            clean_subj = doc.subject or "Core Foundation"
+            cards.append(self._create_card(clean_subj, f"Foundational knowledge for {doc.title}."))
 
         return FlashcardDeck(
             id=str(uuid.uuid4()),
