@@ -15,9 +15,11 @@
 ## 4. Plain Language Rewriter API
 - `POST /api/plain-language/simplify`: Replaces scholarly jargon with plain terminology.
 
-## 5. DAISY Digital Talking Books API
-- `GET /api/daisy/documents/{id}/ncc`: Produces DAISY 2.02 / 3.0 NCC navigation manifests for audio talking book hardware.
+## 5. Concept Mind Map API
+- `GET /api/mindmap/documents/{id}`: Generates hierarchical concept trees for visual learners.
 
-## 6. Multi-Modal Export & Master Bundle API
-- `GET /api/export/formats`: Lists available distribution targets (HTML5, SCORM, EPUB3).
-- `GET /api/bundle/documents/{id}/all`: Streams master zip archive with all accessible formats.
+## 6. Document Cloning API
+- `POST /api/documents/{id}/clone`: Deep clones content structures with fresh UUIDs for custom tailoring.
+
+## 7. DAISY Digital Talking Books API
+- `GET /api/daisy/documents/{id}/ncc`: Produces DAISY 2.02 / 3.0 NCC navigation manifests.

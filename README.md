@@ -10,6 +10,8 @@
 |---|---|---|
 | **Document Extraction & Normalization** | PyMuPDF, DOCX, PPTX, OCR fallback, Content JSON v1.0 | **COMPLETED** |
 | **AI Transformation Engine** | Dyslexia, Cognitive, and Visual profiles with Grounding Validation | **COMPLETED** |
+| **Concept Mind Maps** | Automated hierarchical concept trees for neurodivergent learners | **COMPLETED** |
+| **Document Cloning & Branching** | Deep content duplication with regenerated UUIDs | **COMPLETED** |
 | **Executive Function Breakdown** | Automated assignment pacing and interactive task checklists | **COMPLETED** |
 | **Plain Language Rewriting** | Scholarly jargon simplification dictionary and readability booster | **COMPLETED** |
 | **DAISY Audio Talking Books** | Navigation Control Center (NCC) generation for accessible hardware players | **COMPLETED** |
