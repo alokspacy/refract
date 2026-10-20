@@ -24,10 +24,9 @@ class AudioNarrationService:
                 continue
 
             words = text.split()
-            # Duration calculation ensuring rounded integer milliseconds
             duration_ms = max(int(round((len(words) * 280) / rate)), 500)
-            start_ms = int(current_time_ms)
-            end_ms = int(start_ms + duration_ms)
+            start_ms = max(0, int(current_time_ms))
+            end_ms = max(start_ms + 200, int(start_ms + duration_ms))
 
             cues.append(SubtitleCue(
                 id=cue_id,
@@ -40,7 +39,7 @@ class AudioNarrationService:
             current_time_ms = end_ms + pause_ms
             cue_id += 1
 
-        total_sec = round(current_time_ms / 1000.0, 2)
+        total_sec = round(max(0, current_time_ms) / 1000.0, 2)
         pkg = AudioNarrationPackage(
             variant_id=variant_id,
             track_id=str(uuid.uuid4()),
@@ -67,7 +66,7 @@ class AudioNarrationService:
 
     @staticmethod
     def _format_vtt_timestamp(ms: int) -> str:
-        total_ms = int(round(ms))
+        total_ms = max(0, int(round(ms)))
         hours = total_ms // 3600000
         total_ms %= 3600000
         minutes = total_ms // 60000
