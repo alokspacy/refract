@@ -6,7 +6,7 @@ from app.api import (
     braille, organizations, tactile, math, quiz,
     sign_language, translation, bundle,
     breakdown, plain_language, webhooks,
-    daisy
+    daisy, clone, mindmap
 )
 
 api_router = APIRouter()
@@ -34,3 +34,5 @@ api_router.include_router(breakdown.router)
 api_router.include_router(plain_language.router)
 api_router.include_router(webhooks.router)
 api_router.include_router(daisy.router)
+api_router.include_router(clone.router)
+api_router.include_router(mindmap.router)
