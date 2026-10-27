@@ -1,23 +1,9 @@
-# AccessLearn AI — AI Engine for Automatic Accessible Educational Content
+# AccessLearn AI
 
-**AccessLearn AI** is an enterprise-grade accessible learning platform designed to ingest educational materials across standard formats (PDF, Word DOCX, PowerPoint PPTX, Images, Text, and STEM formulas) and transform them into normalized, structured, traceable, and WCAG 2.2 AA/AAA compliant learning formats.
+AccessLearn AI transforms learning content into accessible formats including Braille, DAISY audiobooks, visual mindmaps, interactive flashcards, sign language animations, and plain-language adaptations.
 
----
-
-## Status & Capabilities
-
-| Capability | Module | Status |
-|---|---|---|
-| **Document Extraction & Normalization** | PyMuPDF, DOCX, PPTX, OCR fallback, Content JSON v1.0 | **COMPLETED** |
-| **AI Transformation Engine** | Dyslexia, Cognitive, and Visual profiles with Grounding Validation | **COMPLETED** |
-| **Concept Mind Maps** | Automated hierarchical concept trees for neurodivergent learners | **COMPLETED** |
-| **Document Cloning & Branching** | Deep content duplication with regenerated UUIDs | **COMPLETED** |
-| **Executive Function Breakdown** | Automated assignment pacing and interactive task checklists | **COMPLETED** |
-| **Plain Language Rewriting** | Scholarly jargon simplification dictionary and readability booster | **COMPLETED** |
-| **DAISY Audio Talking Books** | Navigation Control Center (NCC) generation for accessible hardware players | **COMPLETED** |
-| **Multi-Modal Audio Narration** | WebVTT subtitle synchronization, speaking rate presets, and karaoke player | **COMPLETED** |
-| **STEM & ClearSpeak Math** | LaTeX to MathML and screen-reader spoken math | **COMPLETED** |
-| **Braille Translation Engine** | Unified English Braille (UEB) Grade 1 & 2 translation with .brf export | **COMPLETED** |
-| **Tactile Diagram Exploration** | Structured layer mapping and tactile exploration scripts | **COMPLETED** |
-| **LMS & Standalone Distribution** | SCORM 1.2 / 2004 zip packages and zero-dependency offline HTML5 reader | **COMPLETED** |
-| **Institutional Webhooks & Quotas** | Event dispatchers and multi-tenant school district licensing | **COMPLETED** |
+## Features
+- **WCAG 2.2 AAA & APCA Contrast Engine**: Real-time accessible color palette generation.
+- **Cognitive & Reading Assessment**: Lexile measure and syllable complexity scoring.
+- **Interactive Study Tools**: Auto-generated flashcard decks and concept mindmap trees.
+- **Sensory Accommodations**: Strobe suppression, reduced motion detection, and dyslexia-friendly typography.
