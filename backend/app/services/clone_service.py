@@ -1,14 +1,23 @@
 """Service deep copying documents and regenerating block UUIDs."""
 import uuid
 import copy
-from app.schemas.content import ContentDocument, Section, ContentBlock
+from app.schemas.content import ContentDocument, Section
 from app.schemas.clone import DocumentCloneResponse
 
 class DocumentCloneService:
     @staticmethod
     def clone_document(doc: ContentDocument, new_title: str = None) -> (ContentDocument, DocumentCloneResponse):
         new_id = str(uuid.uuid4())
-        cloned_title = new_title or f"{doc.title} (Clone)"
+        
+        if new_title and new_title.strip():
+            cloned_title = new_title.strip()
+        else:
+            base_title = doc.title.strip() if doc.title else "Untitled Document"
+            # Prevent cascading "(Clone) (Clone)" suffixes
+            if base_title.endswith("(Clone)"):
+                cloned_title = f"{base_title[:-7].strip()} (Copy)"
+            else:
+                cloned_title = f"{base_title} (Clone)"
 
         cloned_sections = []
         copied_blocks = 0
