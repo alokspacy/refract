@@ -1,68 +1,92 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Glass } from "@/components/ui/glass";
+import React, { useState } from 'react';
 
-export interface Flashcard {
+export interface Card {
   id: string;
-  term: string;
-  definition: string;
-  memory_cue: string;
-  example: string;
+  front: string;
+  back: string;
+  category?: string;
 }
 
-export function FlashcardDeck({ cards }: { cards: Flashcard[] }) {
+interface FlashcardDeckProps {
+  title?: string;
+  cards: Card[];
+}
+
+export function FlashcardDeck({ title = 'Study Deck', cards }: FlashcardDeckProps) {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
 
-  if (!cards || cards.length === 0) return null;
+  if (!cards || cards.length === 0) {
+    return (
+      <div className="p-8 text-center text-muted-foreground border border-dashed rounded-xl">
+        No flashcards available in this deck.
+      </div>
+    );
+  }
+
   const current = cards[index];
 
+  const handleNext = () => {
+    setFlipped(false);
+    setIndex((prev) => (prev + 1) % cards.length);
+  };
+
+  const handlePrev = () => {
+    setFlipped(false);
+    setIndex((prev) => (prev - 1 + cards.length) % cards.length);
+  };
+
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-md mx-auto">
-      <div
-        onClick={() => setFlipped(!flipped)}
-        className="w-full h-64 cursor-pointer perspective-1000"
-      >
-        <Glass
-          strong
-          className={`w-full h-full p-6 flex flex-col justify-center items-center text-center transition-all duration-300 border-2 ${
-            flipped ? "border-accent/60 bg-accent/5" : "border-white/20"
-          }`}
-        >
-          {!flipped ? (
-            <div>
-              <span className="text-xs uppercase tracking-widest text-accent mb-2 block">Vocabulary Term</span>
-              <h3 className="text-2xl font-bold">{current.term}</h3>
-              <p className="text-xs text-ink-muted mt-4">Click to reveal definition & mnemonic</p>
-            </div>
-          ) : (
-            <div>
-              <span className="text-xs uppercase tracking-widest text-ink-muted mb-2 block">Simplified Definition</span>
-              <p className="text-sm font-medium mb-3">{current.definition}</p>
-              <div className="p-2.5 bg-accent/10 rounded-lg border border-accent/20 text-xs text-accent">
-                💡 <span className="font-semibold">Memory Cue:</span> {current.memory_cue}
-              </div>
-            </div>
-          )}
-        </Glass>
+    <div className="space-y-4 max-w-lg mx-auto">
+      <div className="flex justify-between items-center text-sm font-medium">
+        <span>{title}</span>
+        <span className="text-muted-foreground">
+          {index + 1} of {cards.length}
+        </span>
       </div>
 
-      <div className="flex items-center gap-4 text-xs">
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label={`Flashcard: ${flipped ? 'Answer' : 'Question'}. Press Enter to flip.`}
+        onClick={() => setFlipped(!flipped)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setFlipped(!flipped);
+          }
+        }}
+        className="min-h-[220px] p-8 rounded-2xl border border-border bg-card shadow-md flex flex-col justify-between items-center text-center cursor-pointer transition-all hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+      >
+        <span className="text-xs uppercase tracking-wider text-primary font-semibold">
+          {current.category || (flipped ? 'Answer' : 'Prompt')}
+        </span>
+
+        <p className="text-lg font-medium my-auto">
+          {flipped ? current.back : current.front}
+        </p>
+
+        <span className="text-xs text-muted-foreground">
+          Click or press Space to {flipped ? 'see question' : 'reveal answer'}
+        </span>
+      </div>
+
+      <div className="flex justify-between gap-3">
         <button
-          onClick={() => { setFlipped(false); setIndex((prev) => Math.max(0, prev - 1)); }}
-          disabled={index === 0}
-          className="px-3 py-1.5 rounded-lg bg-white/10 disabled:opacity-30"
+          type="button"
+          onClick={handlePrev}
+          className="flex-1 py-2 px-4 rounded-xl border border-border hover:bg-muted font-medium text-sm transition"
         >
-          ← Prev
+          Previous
         </button>
-        <span>{index + 1} / {cards.length}</span>
         <button
-          onClick={() => { setFlipped(false); setIndex((prev) => Math.min(cards.length - 1, prev + 1)); }}
-          disabled={index === cards.length - 1}
-          className="px-3 py-1.5 rounded-lg bg-white/10 disabled:opacity-30"
+          type="button"
+          onClick={handleNext}
+          className="flex-1 py-2 px-4 rounded-xl bg-primary text-primary-foreground font-medium text-sm shadow hover:opacity-90 transition"
         >
-          Next →
+          Next Card
         </button>
       </div>
     </div>
