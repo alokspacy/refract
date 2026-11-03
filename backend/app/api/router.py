@@ -7,7 +7,8 @@ from app.api import (
     sign_language, translation, bundle,
     breakdown, plain_language, webhooks,
     daisy, clone, mindmap,
-    assessment, flashcard, stt, sensory
+    assessment, flashcard, stt, sensory,
+    colorblind, focus, outline, speech_preset, lms_manifest
 )
 
 api_router = APIRouter()
@@ -41,3 +42,8 @@ api_router.include_router(assessment.router)
 api_router.include_router(flashcard.router)
 api_router.include_router(stt.router)
 api_router.include_router(sensory.router)
+api_router.include_router(colorblind.router)
+api_router.include_router(focus.router)
+api_router.include_router(outline.router)
+api_router.include_router(speech_preset.router)
+api_router.include_router(lms_manifest.router)
