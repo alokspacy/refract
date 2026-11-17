@@ -10,10 +10,13 @@ class OutlineService:
         for sec in doc.sections:
             for b in sec.blocks:
                 text_len = len(b.source_text) if b.source_text else 0
-                if b.type == BlockType.HEADING and b.source_text:
+                if b.type == BlockType.HEADING and b.source_text and b.source_text.strip():
                     lvl = 2
                     if b.metadata and "level" in b.metadata:
-                        lvl = int(b.metadata["level"])
+                        try:
+                            lvl = max(1, min(6, int(b.metadata["level"])))
+                        except (ValueError, TypeError):
+                            lvl = 2
                     entries.append(HeadingEntry(
                         block_id=b.id,
                         level=lvl,
