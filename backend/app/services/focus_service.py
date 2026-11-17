@@ -10,14 +10,16 @@ class FocusSessionService:
             "status": "ready",
             "current_interval": 1,
             "config": config.model_dump(),
-            "target_duration_sec": config.work_duration_minutes * 60
+            "target_duration_sec": max(60, config.work_duration_minutes * 60)
         }
 
     def compute_summary(self, session_id: str, intervals_completed: int, work_mins: int) -> FocusSessionSummary:
+        safe_intervals = max(0, intervals_completed)
+        safe_mins = max(1, work_mins)
         return FocusSessionSummary(
             session_id=session_id,
-            total_focus_minutes=intervals_completed * work_mins,
-            completed_intervals=intervals_completed,
-            breaks_taken=max(0, intervals_completed - 1),
+            total_focus_minutes=safe_intervals * safe_mins,
+            completed_intervals=safe_intervals,
+            breaks_taken=max(0, safe_intervals - 1),
             distraction_flags=0
         )
