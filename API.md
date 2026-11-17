@@ -1,28 +1,19 @@
 # AccessLearn AI - API Documentation
 
-## Readability & Assessment
-- `POST /assessment/evaluate-text` - Evaluates raw text for reading grade, syllable distributions, and Lexile score.
-- `GET /assessment/documents/{document_id}` - Evaluates an existing normalized document for readability level.
+## Image Accessibility & Alt-Text
+- `POST /alt-text/audit` - Audits document images for missing alt attributes and synthesizes descriptions.
 
-## Color Vision Deficiency (CVD) Simulation
+## UDL Comprehension Rubric
+- `POST /rubric/evaluate` - Evaluates document scaffolding against Universal Design for Learning criteria.
+
+## Assistive Eye-Gaze & Switch Control
+- `POST /gaze/evaluate-dwell` - Evaluates eye-gaze dwell coordinates for hands-free activation.
+- `POST /switch-access/metrics` - Computes scan cycle timing and scanning topology for motor accessibility.
+
+## Closed Captions & Cognitive Load
+- `POST /captions/webvtt` - Generates styled WebVTT closed caption tracks.
+- `POST /cognitive-load/analyze` - Estimates intrinsic and extraneous cognitive load scores.
+
+## Readability & Color Vision Deficiency
+- `POST /assessment/evaluate-text` - Evaluates raw text for reading grade and Lexile score.
 - `GET /colorblind/matrix/{deficiency}` - Generates 3x3 color deficiency simulation matrix.
-- `GET /colorblind/svg-filter/{deficiency}` - Returns SVG feColorMatrix markup for live CSS filter previews.
-
-## Focus & Executive Function
-- `POST /focus/sessions` - Configures structured Pomodoro focus and rest interval pacing.
-- `POST /focus/sessions/{session_id}/complete` - Logs completed study intervals and tracks cognitive endurance.
-
-## Document Outline & Screen Reader Navigation
-- `POST /outline/extract` - Extracts structured H1-H6 heading hierarchy for jumping.
-- `GET /outline/documents/{document_id}` - Retrieves heading outline for a stored document.
-
-## Speech Synthesis Presets
-- `GET /speech-presets` - Returns voice rate and pitch configurations (Relaxed, Standard, Fast, Dyslexia Paced).
-
-## Learning Management System (LMS) Packaging
-- `POST /lms/manifest-xml` - Generates SCORM 2004 4th Edition compliant imsmanifest.xml.
-
-## Study Flashcards & Mindmaps
-- `POST /flashcards/generate` - Automatically extracts question-answer pairs and glossary cards from content.
-- `POST /mindmap/generate` - Generates hierarchical concept mind map tree from document structure.
-- `POST /clone/documents/{document_id}` - Deep clones a normalized document with regenerated block identifiers.
