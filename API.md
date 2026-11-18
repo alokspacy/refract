@@ -1,19 +1,20 @@
 # AccessLearn AI - API Documentation
 
-## Image Accessibility & Alt-Text
-- `POST /alt-text/audit` - Audits document images for missing alt attributes and synthesizes descriptions.
+## AAC & Phonetic Pronunciation
+- `POST /aac/board` - Generates core and fringe vocabulary AAC symbol communication boards.
+- `POST /phonetics/guide` - Breaks academic terms into syllables and phonetic respellings.
 
-## UDL Comprehension Rubric
-- `POST /rubric/evaluate` - Evaluates document scaffolding against Universal Design for Learning criteria.
+## Table Linearization & Multimodal Reading Pace
+- `POST /table-a11y/linearize` - Converts 2D tables into narrative sentences for screen readers.
+- `POST /reading-pace/estimate` - Calculates completion times across visual, TTS, and Braille reading.
 
-## Assistive Eye-Gaze & Switch Control
+## Earcons, Vocabulary Tiers & Magnifier
+- `GET /earcons/palette` - Returns acoustic landmark earcon frequencies and durations.
+- `POST /vocab-tiers/analyze` - Classifies words into Tier 1, Tier 2, and Tier 3 academic vocabulary.
+- `POST /magnifier/viewport` - Computes low-vision screen magnifier bounding geometry.
+
+## Image Alt-Text, UDL Rubric & Gaze/Switch Control
+- `POST /alt-text/audit` - Audits document images for missing alt attributes.
+- `POST /rubric/evaluate` - Evaluates document scaffolding against UDL criteria.
 - `POST /gaze/evaluate-dwell` - Evaluates eye-gaze dwell coordinates for hands-free activation.
-- `POST /switch-access/metrics` - Computes scan cycle timing and scanning topology for motor accessibility.
-
-## Closed Captions & Cognitive Load
-- `POST /captions/webvtt` - Generates styled WebVTT closed caption tracks.
-- `POST /cognitive-load/analyze` - Estimates intrinsic and extraneous cognitive load scores.
-
-## Readability & Color Vision Deficiency
-- `POST /assessment/evaluate-text` - Evaluates raw text for reading grade and Lexile score.
-- `GET /colorblind/matrix/{deficiency}` - Generates 3x3 color deficiency simulation matrix.
+- `POST /switch-access/metrics` - Computes scan cycle timing for motor accessibility.

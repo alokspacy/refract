@@ -9,7 +9,8 @@ from app.api import (
     daisy, clone, mindmap,
     assessment, flashcard, stt, sensory,
     colorblind, focus, outline, speech_preset, lms_manifest,
-    alt_text, rubric, gaze, captions, cognitive_load, switch_access
+    alt_text, rubric, gaze, captions, cognitive_load, switch_access,
+    aac, phonetics, table_a11y, reading_pace, earcons, vocab_tier, magnifier_config
 )
 
 api_router = APIRouter()
@@ -54,3 +55,10 @@ api_router.include_router(gaze.router)
 api_router.include_router(captions.router)
 api_router.include_router(cognitive_load.router)
 api_router.include_router(switch_access.router)
+api_router.include_router(aac.router)
+api_router.include_router(phonetics.router)
+api_router.include_router(table_a11y.router)
+api_router.include_router(reading_pace.router)
+api_router.include_router(earcons.router)
+api_router.include_router(vocab_tier.router)
+api_router.include_router(magnifier_config.router)
