@@ -1,28 +1,40 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Glass } from "@/components/ui/glass";
+import React, { useState } from 'react';
 
-interface MagnifierLensProps {
-  zoom?: number;
-  active?: boolean;
-}
-
-export function MagnifierLens({ zoom = 2, active = false }: MagnifierLensProps) {
-  const [zoomLevel, setZoomLevel] = useState(zoom);
-
-  if (!active) return null;
+export function MagnifierLens() {
+  const [zoom, setZoom] = useState(2.0);
+  const [invert, setInvert] = useState(false);
 
   return (
-    <Glass strong className="fixed bottom-20 left-6 z-40 p-3 rounded-2xl border border-white/20 text-xs space-y-2">
-      <div className="flex justify-between items-center gap-3">
-        <span className="font-bold text-accent uppercase">Screen Lens</span>
-        <div className="flex items-center gap-1 font-mono">
-          <button onClick={() => setZoomLevel(Math.max(1.5, zoomLevel - 0.5))} className="px-2 bg-white/10 rounded">-</button>
-          <span>{zoomLevel.toFixed(1)}x</span>
-          <button onClick={() => setZoomLevel(Math.min(4, zoomLevel + 0.5))} className="px-2 bg-white/10 rounded">+</button>
-        </div>
+    <div className="p-4 rounded-xl border border-border bg-card shadow-sm space-y-3 text-xs">
+      <div className="flex justify-between items-center">
+        <span className="font-semibold uppercase tracking-wider text-muted-foreground">
+          Low-Vision Magnifier Lens
+        </span>
+        <span className="font-mono font-bold text-primary">{zoom.toFixed(1)}x</span>
       </div>
-    </Glass>
+
+      <input
+        type="range"
+        min="1.5"
+        max="5.0"
+        step="0.5"
+        value={zoom}
+        onChange={(e) => setZoom(parseFloat(e.target.value))}
+        className="w-full accent-primary"
+        aria-label="Magnification zoom factor"
+      />
+
+      <label className="flex items-center justify-between cursor-pointer">
+        <span>Invert Lens Polarity</span>
+        <input
+          type="checkbox"
+          checked={invert}
+          onChange={(e) => setInvert(e.target.checked)}
+          className="accent-primary h-4 w-4"
+        />
+      </label>
+    </div>
   );
 }
