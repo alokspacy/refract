@@ -11,7 +11,9 @@ class AltTextService:
         for sec in doc.sections:
             for b in sec.blocks:
                 if b.type == BlockType.IMAGE:
-                    existing_alt = (b.alt_text or b.source_text or "").strip()
+                    meta_alt = b.metadata.get("alt_text") if b.metadata else None
+                    annot_alt = b.accessibility_annotations.get("alt_text") if b.accessibility_annotations else None
+                    existing_alt = (meta_alt or annot_alt or b.source_text or "").strip()
                     if not existing_alt:
                         missing_count += 1
                         generated_alt = f"Educational diagram in section {sec.title or doc.title}"

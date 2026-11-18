@@ -11,7 +11,7 @@ def test_alt_text_audit():
                 title="Leaf Structure",
                 blocks=[
                     ContentBlock(id="img1", type=BlockType.IMAGE, source_text=""),
-                    ContentBlock(id="img2", type=BlockType.IMAGE, alt_text="Chloroplast cross section")
+                    ContentBlock(id="img2", type=BlockType.IMAGE, metadata={"alt_text": "Chloroplast cross section"})
                 ]
             )
         ]
