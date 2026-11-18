@@ -13,9 +13,9 @@ class CognitiveLoadService:
                 if b.source_text and len(b.source_text.split()) > 120:
                     long_blocks += 1
 
-        glossary_count = len(doc.glossary)
-        intrinsic = min(100.0, round(glossary_count * 6.5 + 25.0, 1))
-        extraneous = min(100.0, round((long_blocks / max(1, total_blocks)) * 100.0 + 15.0, 1))
+        glossary_count = len(doc.glossary) if doc.glossary else 0
+        intrinsic = min(100.0, round(glossary_count * 6.5 + 20.0, 1))
+        extraneous = min(100.0, round((long_blocks / max(1, total_blocks)) * 100.0 + 10.0, 1)) if total_blocks > 0 else 10.0
         avg_load = (intrinsic + extraneous) / 2.0
 
         band = "Low" if avg_load < 40 else ("Moderate" if avg_load < 70 else "High")
